@@ -1,3 +1,12 @@
+:root {
+    /* valid names: --specialcolor --specialColor
+    invalid names: --special color (space between) */
+    --special-color: tomato;
+    --second-color: #551cf1;
+    --light-color: white;
+    --dark-color: black;
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -19,8 +28,8 @@ main > p {
 }
 /* + is adjacent combinator */
 h2+p {
-    background-color: black;
-    color: white;
+    background-color: var(--dark-color);
+    color: var(--light-color);
     padding: 1rem;
 }
 /* ~ is sibling combinator */
@@ -33,14 +42,51 @@ h2+p {
 }
 /* [] is to use attributes as selectors */
 a[href="#"] {
-    color: tomato;
+    color: var(--special-color);
 }
 
 /* [target] {
     color: tomato;
 } */
-
+/* State related pseudo classes */
 a[href^="http"] {
-    border-left: 4px solid #551CF1;
+    border-left: 4px solid var(--second-color);
     padding-left: 1rem;
+}
+/* LoVe HAte */
+nav a,
+nav a:link,
+nav a:visited {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform .5s;
+}
+
+nava:hover,
+nav a:focus {
+    text-decoration: underline;
+    transform: scale(1.4);
+}
+
+nav a:active {
+    transform: scale(1.4) translateX(10px);
+}
+
+/* Pseudo elements */
+a[href$=".pdf"]::after {
+    content: "\2913";
+    font-size: 1.25rem;
+    color: var(--special-color);
+}
+
+h2+p::first-line {
+    color: var(--special-color);
+}
+
+h3+p::first-letter {
+    background-color: var(--second-color);
+    color: var(--light-color);
+    padding: .25rem;
+    margin-right: .10rem;
 }
